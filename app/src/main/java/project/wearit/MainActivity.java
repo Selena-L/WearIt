@@ -17,6 +17,8 @@ import project.wearit.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -30,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView precipitationValText;
     private SeekBar windSpeedBar;
     private TextView windSpeedValText;
+    private Button nextButton;
+    private TextView tempWT;
+    private TextView precipWT;
+    private TextView windWT;
+    private ImageView bodypic;
+    private ImageView headpic;
+    private ImageView legpic;
+    private ImageView feetpic;
+    private TextView textView_head;
+    private TextView textView_body;
+    private TextView textView_leg;
+    private TextView textView_feet;
 
 
     @Override
@@ -114,6 +128,55 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //implementation of the next button on the first page
+        nextButton = (Button) findViewById(R.id.button_next);
+        tempWT = (TextView) findViewById(R.id.changeintemp);
+        precipWT = (TextView) findViewById(R.id.changeintemp);
+        windWT = (TextView) findViewById(R.id.changeintemp);
+        textView_head = (TextView) findViewById(R.id.textView_hat);
+        textView_body = (TextView) findViewById(R.id.textView_top);
+        textView_leg = (TextView) findViewById(R.id.textView_bottom);
+        textView_feet = (TextView) findViewById(R.id.textView_shoes);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //set the weather to the progress bar in the first page
+                tempWT.setText(tempBar.getProgress());
+                precipWT.setText(precipitationBar.getProgress());
+                windWT.setText(windSpeedBar.getProgress());
+
+                //change clothes
+                if(tempBar.getProgress() >= 20) {
+                    textView_head.setText("Hat");
+                    textView_body.setText("T-shirt");
+                    textView_leg.setText("Shorts");
+                    textView_feet.setText("Sandals");
+
+                    if(precipitationBar.getProgress() > 40) {
+                        textView_body.setText("Bring a rain jacket!");
+
+                    }
+                }
+                else if(tempBar.getProgress() >= 10 && tempBar.getProgress() < 20) {
+                    textView_head.setText("Hat");
+                    textView_body.setText("Jacket");
+                    textView_leg.setText("Jeans");
+                    textView_feet.setText("Sneakers");
+
+                    if(precipitationBar.getProgress() > 40) {
+                        textView_body.setText("Bring a rain jacket!");
+                    }
+                }
+                else if(tempBar.getProgress() < 10) {
+                    textView_head.setText("Toque");
+                    textView_body.setText("Winter Jacket");
+                    textView_leg.setText("Sweatpants");
+                    textView_feet.setText("Boots");
+                }
+            }
+        });
+
+        //add warmer and colder settings
 
     }
 
