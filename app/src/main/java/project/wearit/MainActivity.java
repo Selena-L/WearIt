@@ -17,15 +17,23 @@ import project.wearit.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private SeekBar tempBar;
+    private TextView tempValText;
+    private SeekBar precipitationBar;
+    private TextView precipitationValText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -43,6 +51,47 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // SeekBar: temperature_toggle
+        tempBar = (SeekBar) findViewById(R.id.temperature_toggle);
+        tempValText = (TextView) findViewById(R.id.temperature_value);
+        tempValText.setText(tempBar.getProgress() + "C");
+        tempBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int temperatureVal = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                temperatureVal = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //write custom code to on start progress
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                tempValText.setText(temperatureVal + "C");
+            }
+        });
+
+        // SeekBar: precipitation_toggle
+        precipitationBar = (SeekBar) findViewById(R.id.precipitation_toggle);
+        precipitationValText = (TextView) findViewById(R.id.precipitation_value);
+        precipitationValText.setText(precipitationBar.getProgress() + "%");
+        tempBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int precipitationVal = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                precipitationVal = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //write custom code to on start progress
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                precipitationValText.setText(precipitationVal + "%");
+            }
+        });
+
 
     }
 
