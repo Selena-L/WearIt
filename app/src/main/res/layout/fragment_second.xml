@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#901FCC"
     tools:context=".SecondFragment">
 
     <TextView
         android:id="@+id/Weather"
-        android:layout_width="186dp"
-        android:layout_height="83dp"
+        android:layout_width="241dp"
+        android:layout_height="97dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Weather"
-        android:textColor="#121111"
-        android:textSize="30sp"
+        android:textColor="#FBFBFB"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <Button
         android:id="@+id/button_second"
