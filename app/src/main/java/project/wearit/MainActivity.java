@@ -129,14 +129,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //implementation of the next button on the first page
+        //initialize variables
         nextButton = (Button) findViewById(R.id.button_next);
         tempWT = (TextView) findViewById(R.id.changeintemp);
-        precipWT = (TextView) findViewById(R.id.changeintemp);
-        windWT = (TextView) findViewById(R.id.changeintemp);
+        precipWT = (TextView) findViewById(R.id.changeinprecip);
+        windWT = (TextView) findViewById(R.id.changeinwind);
         textView_head = (TextView) findViewById(R.id.textView_hat);
         textView_body = (TextView) findViewById(R.id.textView_top);
         textView_leg = (TextView) findViewById(R.id.textView_bottom);
         textView_feet = (TextView) findViewById(R.id.textView_shoes);
+        headpic = (ImageView) findViewById(R.id.imageView_head);
+        bodypic = (ImageView) findViewById(R.id.imageView_body);
+        legpic = (ImageView) findViewById(R.id.imageView_leg);
+        feetpic = (ImageView) findViewById(R.id.imageView_feet);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,31 +152,51 @@ public class MainActivity extends AppCompatActivity {
 
                 //change clothes
                 if(tempBar.getProgress() >= 20) {
+                    //changes text
                     textView_head.setText("Hat");
                     textView_body.setText("T-shirt");
                     textView_leg.setText("Shorts");
                     textView_feet.setText("Sandals");
-
+                    //changes images
+                    headpic.setImageResource(R.drawable.cap);
+                    bodypic.setImageResource(R.drawable.shirt);
+                    legpic.setImageResource(R.drawable.shorts);
+                    feetpic.setImageResource(R.drawable.sandals);
+                    //if it rains
                     if(precipitationBar.getProgress() > 40) {
+                        //changes text
                         textView_body.setText("Bring a rain jacket!");
-
+                        bodypic.setImageResource(R.drawable.rainjacket);
                     }
                 }
                 else if(tempBar.getProgress() >= 10 && tempBar.getProgress() < 20) {
+                    //changes text
                     textView_head.setText("Hat");
                     textView_body.setText("Jacket");
                     textView_leg.setText("Jeans");
                     textView_feet.setText("Sneakers");
-
+                    //changes images
+                    headpic.setImageResource(R.drawable.cap);
+                    bodypic.setImageResource(R.drawable.jacket);
+                    legpic.setImageResource(R.drawable.jeans);
+                    feetpic.setImageResource(R.drawable.sneakers);
+                    //if it rains
                     if(precipitationBar.getProgress() > 40) {
+                        //changes text
                         textView_body.setText("Bring a rain jacket!");
                     }
                 }
                 else if(tempBar.getProgress() < 10) {
+                    //changes text
                     textView_head.setText("Toque");
                     textView_body.setText("Winter Jacket");
                     textView_leg.setText("Sweatpants");
                     textView_feet.setText("Boots");
+                    //changes images
+                    headpic.setImageResource(R.drawable.toque);
+                    bodypic.setImageResource(R.drawable.snow_jacket);
+                    legpic.setImageResource(R.drawable.sweats);
+                    feetpic.setImageResource(R.drawable.snowboots);
                 }
             }
         });
