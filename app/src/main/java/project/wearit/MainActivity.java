@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tempValText;
     private SeekBar precipitationBar;
     private TextView precipitationValText;
+    private SeekBar windSpeedBar;
+    private TextView windSpeedValText;
 
 
     @Override
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         precipitationBar = (SeekBar) findViewById(R.id.precipitation_toggle);
         precipitationValText = (TextView) findViewById(R.id.precipitation_value);
         precipitationValText.setText(precipitationBar.getProgress() + "%");
-        tempBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        precipitationBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int precipitationVal = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -89,6 +91,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 precipitationValText.setText(precipitationVal + "%");
+            }
+        });
+
+        // SeekBar: windSpeed_toggle
+        windSpeedBar = (SeekBar) findViewById(R.id.windSpeed_toggle);
+        windSpeedValText = (TextView) findViewById(R.id.windSpeed_value);
+        windSpeedValText.setText(windSpeedBar.getProgress() + "%");
+        windSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int windSpeedVal = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                windSpeedVal = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //write custom code to on start progress
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                windSpeedValText.setText(windSpeedVal + "%");
             }
         });
 
